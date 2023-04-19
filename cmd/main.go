@@ -1,7 +1,14 @@
-package cmd
+package main
 
-import "fmt"
+import (
+	"github.com/gin-gonic/gin"
+	"insCat/api_server/user"
+)
 
 func main() {
-	fmt.Println("start")
+	r := gin.Default()
+	r.MaxMultipartMemory = 64 << 20
+	r.Use()
+	r.POST("/api/login", user.LoginUser)
+	r.Run()
 }
